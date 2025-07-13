@@ -17,7 +17,6 @@
 
 * Opened [AWS S3 Console](https://s3.console.aws.amazon.com)
 * Created a new S3 bucket with a **globally unique name**
-* Selected the **Asia Pacific (Mumbai)** region
 * Enabled public access for static website hosting
   <img width="2940" height="1912" alt="Screenshot 2025-07-13 at 4 39 21 PM" src="https://github.com/user-attachments/assets/d5c7af3b-30c4-4df8-8678-479fc71f1a8b" />
   
