@@ -80,7 +80,9 @@
 #### 🚀 8. Set up GitHub Actions Workflow
 
 * In the `.github/workflows/` directory, created a file `main.yml`
-* Configured CI/CD pipeline using the following workflow:
+* Configured CI/CD pipeline using the following workflow
+  <img width="2940" height="1912" alt="Screenshot 2025-07-13 at 5 11 05 PM" src="https://github.com/user-attachments/assets/84444644-2f71-44ca-b49a-cdfb0e3e9949" />
+
 
 
 ---
@@ -92,6 +94,9 @@
   * `AWS_ACCESS_KEY_ID`
   * `AWS_SECRET_ACCESS_KEY`
   * `AWS_S3_BUCKET_NAME`
+   <img width="2940" height="1912" alt="Screenshot 2025-07-13 at 5 11 23 PM" src="https://github.com/user-attachments/assets/d657d745-b9f3-4024-a866-a049cb523e05" />
+
+
 
 ---
 
