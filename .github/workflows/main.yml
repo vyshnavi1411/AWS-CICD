@@ -28,4 +28,4 @@ jobs:
 
     - name: Deploy to S3
       run: |
-        aws s3 sync DevOps-Project/Dummy-portfolio-code/ s3://${{ secrets.AWS_S3_BUCKET_NAME }} --delete
+        aws s3 sync code/ s3://${{ secrets.AWS_S3_BUCKET_NAME }} --delete
