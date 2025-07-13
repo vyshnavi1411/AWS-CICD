@@ -21,7 +21,7 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 // Typing effect
-const textArray = ["Vyshnavi", "Cloud Engineer", "DevOps Enthusiast"];
+const textArray = ["Vyshnavi", "DevOps Enthusiast"];
 let textIndex = 0, charIndex = 0;
 
 function typeText() {
