@@ -1,138 +1,89 @@
-## 🪄 Step-by-Step Setup
+## 🧑‍🎓 DevOps Project: AWS S3 Static Website Hosting using GitHub Actions
 
+### 🔧 Step-by-Step Implementation by Student
 
-### 1. 🛠 Create an IAM User in AWS
+#### ✅ 1. Created an IAM User
 
-- Go to [AWS IAM Console](https://console.aws.amazon.com/iam/)
-- Create a user with **AWS S3 Full Access** 
-- Attach the following policy
+* Created an IAM user via [AWS IAM Console](https://console.aws.amazon.com/iam/)
+* Attached the **AmazonS3FullAccess** policy to the user
+* Generated **Access Key** and **Secret Key** for GitHub integration
 
-<img width="452" height="294" alt="image" src="https://github.com/user-attachments/assets/157e7e29-7b74-4cd2-91f8-6fb2aaca0695" />
+---
 
+#### 🪣 2. Created an S3 Bucket
 
-<img width="452" height="294" alt="image" src="https://github.com/user-attachments/assets/4a2a45b7-5386-4be2-b38d-e08d54311ec9" />
+* Opened [AWS S3 Console](https://s3.console.aws.amazon.com)
+* Created a new S3 bucket with a **globally unique name**
+* Selected the **Asia Pacific (Mumbai)** region
+* Enabled public access for static website hosting
 
+---
 
-### ✅ 2. Create an S3 Bucket
+#### 🌐 3. Enabled Static Website Hosting
 
-- Go to the [AWS S3 Console](https://s3.console.aws.amazon.com)
-- Click **Create bucket**
-- Provide:
-    - **Bucket name**: `your-unique-bucket-name`
-    - **Region**: e.g., `Asia Pacific (Mumbai) - ap-south-1`
-- Leave other settings as default and click **Create bucket**
+* Configured **index.html** and **error.html** as website entry points
+* Enabled static hosting through the bucket's **Properties tab**
 
-![omkarsharma2821](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/urqf3aniusu7epluhl1m.png)
+---
 
-### 🌐 3. Enable Static Website Hosting
+#### 🔓 4. Allowed Public Access
 
-- Go to your created bucket
-- Click on the **Properties** tab
-- Scroll to **Static website hosting** > Click **Edit**
-- Enable `Static website hosting`
-- Set:
-   - **Index document**: `index.html`
-   - **Error document**: `index.html` *(or `error.html` optionally)*
-- Click **Save changes**
+* Disabled all **Block Public Access** settings in **Permissions**
+* Confirmed via warning acknowledgment
 
-![omkarsharma2821](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/e1fyiz6d1ro64scg01wl.png)
+---
 
-### 🔓 4. Allow Public Access
+#### 👥 5. Set Object Ownership
 
-- Go to the **Permissions** tab
-- Under **Block public access (bucket settings)**, click **Edit**
-- **Uncheck all** options (especially "Block all public access")
-- Confirm by checking the warning box
-- Click **Save changes**
+* Enabled **ACLs**
+* Selected **Bucket owner preferred** to manage permissions
 
-![omkarsharma2821](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/3ha5aood0vq44zwyjkmm.png)
+---
 
-### 👥 5. Set Object Ownership to Public
+#### 🛡 6. Attached Bucket Policy
 
-- Still under the **Permissions** tab
-- Scroll to **Object Ownership** and click **Edit**
-- Choose:
-   - `ACLs enabled`
-   - `Bucket owner preferred`
-- Save the changes
+* Used the [AWS Policy Generator](https://awspolicygen.s3.amazonaws.com/policygen.html)
+* Created a public read policy:
 
-
-![omkarsharma2821](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/lcvrslrkitemnriyl7he.png)
-
-### 🛡 6. Attach Public Read Policy Using Policy Generator
-
-#### 🧰 Use AWS Policy Generator:
-
-- Open: [AWS Policy Generator](https://awspolicygen.s3.amazonaws.com/policygen.html)
-
-**Fill in:**
-- **Effect**: `Allow`
-- **Principal**: *
-- **Action**: `s3:GetObject` or check All action
-- **ARN**:  paste-your-S3-Bucket-ARN
-
-![omkarsharma2821](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/2m2by1x1icda1zpkodj0.png)
-
-![omkarsharma2821](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/gwaym21p2tlf2y891r3o.png)
-
-### 7. Create access-keys for IAM user
-
-![omkarsharma2821](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/gqgpp46qnzq00v4w305z.png)
-
-### 8. Go to GitHub Actions
-
-- Open your GitHub repository.
-- Click on the **"Actions"** tab.
-- Click on **"Set up a workflow yourself"** or choose **"New workflow"**.
-
-
-### 9. Create a Workflow File
-
-- In the `.github/workflows/` folder, create a file named:  main.yml
-- paste below code in the code area and click commit changes.
-
-```bash
-name: production testing pipeline
-
-on:
-  push:
-    branches: [main]
-
-jobs:
-  deploy:
-    name: Build, Test & Deploy Portfolio
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-    - name: Validate Files Exist
-      run: |
-        test -f DevOps-Project/Dummy-portfolio-code/index.html || (echo "index.html missing" && exit 1)
-        test -f DevOps-Project/Dummy-portfolio-code/style.css || (echo "style.css missing" && exit 1)
-        test -f DevOps-Project/Dummy-portfolio-code/script.js || (echo "script.js missing" && exit 1)
-
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v2
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: 'ap-south-1'
-
-    - name: Deploy to S3
-      run: |
-        aws s3 sync DevOps-Project/Dummy-portfolio-code/ s3://${{ secrets.AWS_S3_BUCKET_NAME }} --delete
-
+```json
+{
+  "Effect": "Allow",
+  "Principal": "*",
+  "Action": "s3:GetObject",
+  "Resource": "arn:aws:s3:::your-unique-bucket-name/*"
+}
 ```
- 
-### 10. Add New repository secrets
 
-- Go to settings > secrets and variables
-- click add new repository secret.
-- click actions.
+* Attached the policy under **Bucket permissions**
 
-![omkarsharma2821](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/0ig5oa6cc162z13w6a92.png)
+---
+
+#### 🔑 7. Generated IAM Access Keys
+
+* Copied the **Access Key ID** and **Secret Access Key**
+* Used them to configure GitHub Actions secrets
+
+---
+
+#### 🚀 8. Set up GitHub Actions Workflow
+
+* In the `.github/workflows/` directory, created a file `main.yml`
+* Configured CI/CD pipeline using the following workflow:
 
 
-![omkarsharma2821](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/b6dgc3myzqixw9fbwwe9.png)
+---
+
+#### 🔐 9. Added Repository Secrets in GitHub
+
+* Added the following secrets under GitHub `Settings > Secrets and Variables`:
+
+  * `AWS_ACCESS_KEY_ID`
+  * `AWS_SECRET_ACCESS_KEY`
+  * `AWS_S3_BUCKET_NAME`
+
+---
+
+### 📦 Outcome
+
+* The student successfully deployed a portfolio website on **AWS S3** using a **CI/CD pipeline with GitHub Actions**
+* The site updates automatically whenever code is pushed to the `main` branch
