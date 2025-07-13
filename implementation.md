@@ -7,7 +7,8 @@
 * Created an IAM user via [AWS IAM Console](https://console.aws.amazon.com/iam/)
 * Attached the **AmazonS3FullAccess** policy to the user
 * Generated **Access Key** and **Secret Key** for GitHub integration
-<img width="2940" height="1912" alt="Screenshot 2025-07-13 at 4 49 55 PM" src="https://github.com/user-attachments/assets/4ae9217f-e55d-415f-a99d-b37225b81bb2" />
+<img width="2940" height="1912" alt="Screenshot 2025-07-13 at 5 05 18 PM" src="https://github.com/user-attachments/assets/9491d25e-35ee-4630-8711-c0ab05656ded" />
+
 
 
 ---
@@ -71,6 +72,8 @@
 
 * Copied the **Access Key ID** and **Secret Access Key**
 * Used them to configure GitHub Actions secrets
+  <img width="2940" height="1912" alt="Screenshot 2025-07-13 at 4 49 55 PM" src="https://github.com/user-attachments/assets/060b41c9-7b55-4497-a5d3-a2b74637aa0c" />
+
 
 ---
 
@@ -95,4 +98,11 @@
 ### 📦 Outcome
 
 * The student successfully deployed a portfolio website on **AWS S3** using a **CI/CD pipeline with GitHub Actions**
-* The site updates automatically whenever code is pushed to the `main` branch
+* The site updates automatically whenever code is pushed to the `master` branch
+  
+  <img width="2940" height="1912" alt="Screenshot 2025-07-13 at 5 07 49 PM" src="https://github.com/user-attachments/assets/1c4eea54-6539-49d0-87bf-eebce053b4ec" />
+  <img width="2940" height="1912" alt="Screenshot 2025-07-13 at 5 07 53 PM" src="https://github.com/user-attachments/assets/7daa0aa6-3512-48cf-af64-d4494de31e58" />
+  <img width="2940" height="1912" alt="Screenshot 2025-07-13 at 5 07 56 PM" src="https://github.com/user-attachments/assets/0a3d2024-a371-47e4-96a8-2ffb31174ea7" />
+
+
+
