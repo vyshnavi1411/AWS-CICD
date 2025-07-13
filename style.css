@@ -1,0 +1,180 @@
+/* Same root and theme setup as before... */
+:root {
+  --bg-light: #ffffff;
+  --bg-dark: #121212;
+  --text-light: #111;
+  --text-dark: #f1f1f1;
+  --primary: #6c63ff;
+  --gradient: linear-gradient(to right, #6c63ff, #43e97b);
+  --transition: all 0.3s ease;
+}
+
+[data-theme="light"] {
+  --bg: var(--bg-light);
+  --text: var(--text-light);
+}
+[data-theme="dark"] {
+  --bg: var(--bg-dark);
+  --text: var(--text-dark);
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  margin: 0;
+  scroll-behavior: smooth;
+  transition: var(--transition);
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 2rem;
+}
+
+header {
+  background: var(--bg);
+  border-bottom: 1px solid #ddd;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav a {
+  margin: 0 1rem;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 500;
+}
+
+nav a:hover {
+  color: var(--primary);
+}
+
+#toggle-theme {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* Hero Section */
+#hero {
+  height: 95vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: var(--gradient);
+  color: white;
+}
+
+.hero-name {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero-desc {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.typed-text {
+  font-weight: bold;
+  color: #fff700;
+}
+
+.cursor {
+  font-weight: bold;
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1 }
+  50% { opacity: 0 }
+}
+
+.social-icons a {
+  font-size: 1.5rem;
+  margin: 0 0.7rem;
+  color: white;
+  transition: var(--transition);
+}
+
+.social-icons a:hover {
+  color: #fff700;
+}
+
+.btn {
+  margin-top: 1.5rem;
+  padding: 0.6rem 1.4rem;
+  background: white;
+  color: var(--primary);
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: var(--transition);
+}
+
+.btn:hover {
+  background: var(--primary);
+  color: white;
+}
+
+/* Cards & Sections */
+.section-title {
+  font-size: 2rem;
+  text-align: center;
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background: var(--bg);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.skills-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.skills-list li {
+  background: var(--gradient);
+  color: white;
+  padding: 0.5rem 1.2rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 0.9rem;
+  background: #e8e8e8;
+  color: #333;
+}
